@@ -8,15 +8,16 @@ Gem::Specification.new do |spec|
   spec.version       = Minitest::MatchJson::VERSION
   spec.authors       = ['Gary Gordon']
   spec.email         = ['gfgordon@gmail.com']
-  spec.summary       = %q{Compare two JSON objects}
-  spec.description   = %q{Compare two JSON objects with pretty diffs}
-  spec.homepage      = ''
+  spec.summary       = 'Compare two JSON objects'
+  spec.description   = 'Compare two JSON objects with pretty diffs'
+  spec.homepage      = 'http://ggordon.github.io/minitest-match_json'
   spec.license       = 'MIT'
 
   spec.files         = `git ls-files -z`.split("\x0")
-  spec.executables   = spec.files.grep(%r{^bin/}) { |f| File.basename(f) }
-  spec.test_files    = spec.files.grep(%r{^(test|spec|features)/})
+  spec.executables   = spec.files.grep(/^bin\//) { |f| File.basename(f) }
+  spec.test_files    = spec.files.grep(/^(test|spec|features)\//)
   spec.require_paths = ['lib']
+  spec.required_ruby_version = '>= 1.9'
 
   spec.add_dependency 'diffy'
   spec.add_dependency 'json'
@@ -24,4 +25,5 @@ Gem::Specification.new do |spec|
 
   spec.add_development_dependency 'bundler', '~> 1.7'
   spec.add_development_dependency 'rake', '~> 10.0'
+  spec.add_development_dependency 'simplecov'
 end
