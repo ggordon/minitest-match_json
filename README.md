@@ -25,7 +25,7 @@ Or install it yourself as:
 require 'minitest-match_json'
 ```
 
-[Diffy](https://github.com/samg/diffy) is used to compared the two JSON objects. Options to control the output format and number of context lines to be displayed can be passed through to Diffy.
+[Diffy](https://github.com/samg/diffy) is used to compare the two JSON objects. Options to control the output format and number of context lines to be displayed can be passed through to Diffy.
 
 ```ruby
 Minitest::MatchJson.configure do |config|
