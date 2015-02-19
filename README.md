@@ -1,6 +1,6 @@
 # Minitest::MatchJson
 
-TODO: Write a gem description
+Compare two JSON objects. If a String is passed in, it is expected to be valid JSON, any other type will be converted to json if possible.
 
 ## Installation
 
@@ -20,11 +20,32 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+```
+require 'minitest-match_json'
+```
+
+[Diffy](https://github.com/samg/diffy) is used to compared the two JSON objects. Options to control the output format and number of context lines to be displayed can be passed through to Diffy.
+
+```ruby
+Minitest::MatchJson.configure do |config|
+  config.format = :color
+  config.context = 1
+end
+```
+
+### Assert style
+```ruby
+assert_match_json expected_json, actual_json
+```
+
+### Spec style
+```ruby
+actual_json.must_match_json expected_json
+```
 
 ## Contributing
 
-1. Fork it ( https://github.com/[my-github-username]/minitest-match_json/fork )
+1. Fork it ( https://github.com/ggordon/minitest-match_json/fork )
 2. Create your feature branch (`git checkout -b my-new-feature`)
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
