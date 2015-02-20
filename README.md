@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/ggordon/minitest-match_json.svg?branch=master)](https://travis-ci.org/ggordon/minitest-match_json) [![Gem Version](https://badge.fury.io/rb/minitest-match_json.svg)](http://badge.fury.io/rb/minitest-match_json) [![Code Climate](https://codeclimate.com/github/ggordon/minitest-match_json/badges/gpa.svg)](https://codeclimate.com/github/ggordon/minitest-match_json) [![Test Coverage](https://codeclimate.com/github/ggordon/minitest-match_json/badges/coverage.svg)](https://codeclimate.com/github/ggordon/minitest-match_json)
 
-Compare two JSON objects. If a String is passed in, it is expected to be valid JSON, any other type will be converted to json if possible.
+Compare a JSON string to another JSON object. If a String is passed in, it is expected to be valid JSON, any other type will be converted to json if possible.
 
 ## Installation
 

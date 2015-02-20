@@ -73,6 +73,6 @@ module Minitest
     #
     #  Fails unless the subject and parameter are equivalent JSON
     #
-    infect_an_assertion :assert_match_json, :must_match_json, true
+    String.infect_an_assertion :assert_match_json, :must_match_json, true
   end
 end
