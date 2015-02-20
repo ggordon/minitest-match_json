@@ -9,27 +9,27 @@ module Minitest
   module MatchJson
     class << self
       attr_writer :configuration
-    end
 
-    def self.configuration
-      @configuration ||= Configuration.new
-    end
+      def configuration
+        @configuration ||= Configuration.new
+      end
 
-    def self.configure
-      yield configuration
-    end
+      def configure
+        yield configuration
+      end
 
-    def self.compare_json(actual_json, expected_json)
-      Diffy::Diff.new(
-        expected_json,
-        actual_json,
-        context: configuration.context
-      ).to_s(configuration.format)
-    end
+      def compare_json(actual_json, expected_json)
+        Diffy::Diff.new(
+          expected_json,
+          actual_json,
+          context: configuration.context
+        ).to_s(configuration.format)
+      end
 
-    def self.pretty_json(param)
-      json = (param.is_a?(String)) ? param : param.to_json
-      JSON.pretty_generate(JSON.parse(json))
+      def pretty_json(param)
+        json = (param.is_a?(String)) ? param : param.to_json
+        JSON.pretty_generate(JSON.parse(json))
+      end
     end
   end
 
