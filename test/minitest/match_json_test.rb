@@ -23,12 +23,40 @@ describe Minitest do
       json = '{"a": 2, "b": 4}'
       begin
         json.must_match_json 2
-      rescue MiniTest::Assertion
-        pass
+      rescue MiniTest::Assertion => expected_failure
+        expected_failure.message.must_match /Parameter cannot be converted to JSON/
       end
     end
 
-    it 'returns a default result when failing' do
+    it 'returns a default result when failing with assert' do
+      Minitest::MatchJson.configure do |config|
+        config.format = :text
+      end
+
+      json = '{"b": 5}'
+      hash = { b: 4 }
+
+      out, _ = capture_io do
+        begin
+          assert_match_json json, hash
+        rescue MiniTest::Assertion
+          pass
+        end
+      end
+      out.must_equal(<<STR
+
+ {
+-  \"b\": 5
++  \"b\": 4
+ }
+\\ No newline at end of file
+
+STR
+      )
+    end
+
+
+    it 'returns a default result when failing with spec' do
       Minitest::MatchJson.configure do |config|
         config.format = :text
       end
@@ -46,8 +74,8 @@ describe Minitest do
       out.must_equal(<<STR
 
  {
--  \"b\": 4
-+  \"b\": 5
+-  \"b\": 5
++  \"b\": 4
  }
 \\ No newline at end of file
 
@@ -74,8 +102,8 @@ STR
       out.must_equal(<<STR
 
    \"a\": 3,
--  \"b\": 4,
-+  \"b\": 5,
+-  \"b\": 5,
++  \"b\": 4,
    \"c\": 5
 
 STR
@@ -100,8 +128,8 @@ STR
       out.must_equal(<<STR
 
  {
-\e[31m-  \"b\": 4\e[0m
-\e[32m+  \"b\": 5\e[0m
+\e[31m-  \"b\": 5\e[0m
+\e[32m+  \"b\": 4\e[0m
  }
 \\ No newline at end of file
 
